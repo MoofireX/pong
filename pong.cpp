@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-int settings(int current_state){
+int settings(int state){
     while(!WindowShouldClose()){
 
         if (IsKeyPressed(KEY_UP)){
