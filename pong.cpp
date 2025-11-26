@@ -27,13 +27,13 @@ int settings(int state){
         ClearBackground(BLACK);
         DrawText("SETTINGS", 100, 100, 100, RAYWHITE);
         if (state == 0){
-            DrawText("Speed: 2", 100, 300, 100, RAYWHITE);
+            DrawText("Speed: 1", 100, 300, 100, RAYWHITE);
         }
         else if (state == 1){
-            DrawText("Speed: 5", 100, 300, 100, RAYWHITE);
+            DrawText("Speed: 2", 100, 300, 100, RAYWHITE);
         }
         else{
-            DrawText("Speed: 8", 100, 300, 100, RAYWHITE);
+            DrawText("Speed: 3", 100, 300, 100, RAYWHITE);
         }
         EndDrawing();
     }
@@ -50,8 +50,8 @@ int main() {
     int paddle2_y = 275;
     int ball_x = 400;
     int ball_y = 300;
-    int ball_x_speed = 2;
-    int ball_y_speed = 1;
+    int ball_x_speed = 3;
+    int ball_y_speed = 2;
     while (!WindowShouldClose() || p1_score > 15 || p2_score > 15){
 
         ball_x += ball_x_speed;
@@ -67,15 +67,11 @@ int main() {
             p2_score++;
             ball_x = 400;
             ball_y = 300;
-            ball_x_speed = 2;
-            ball_y_speed = 1;
         }
         else if (ball_x >= 770){
             p1_score++;
             ball_x = 400;
             ball_y = 300;
-            ball_x_speed = -2;
-            ball_y_speed = 1;
         }
 
         if (ball_x_speed < 0 && CheckCollisionCircleRec({float(ball_x),float(ball_y)}, 10, {10, float(paddle1_y), 20, 100})){
@@ -106,19 +102,9 @@ int main() {
         }
 
         if (IsKeyPressed(KEY_M)){
-            int state = settings(state);
-            if (state == 0){
-                ball_x_speed = 2;
-                ball_y_speed = 1;
-            }
-            else if (state == 1){
-                ball_x_speed = 5;
-                ball_y_speed = 3;
-            }
-            else{
-                ball_x_speed = 8;
-                ball_y_speed = 5;
-            }
+            state = settings(state);
+            ball_x_speed = state * 2 + 3;
+            ball_y_speed = ball_x_speed - 1;
         }
     
         BeginDrawing();
