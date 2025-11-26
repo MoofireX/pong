@@ -52,7 +52,7 @@ int main() {
     int ball_y = 300;
     int ball_x_speed = 3;
     int ball_y_speed = 2;
-    while (!WindowShouldClose() || p1_score > 15 || p2_score > 15){
+    while (!WindowShouldClose()){
 
         ball_x += ball_x_speed;
         ball_y += ball_y_speed;
