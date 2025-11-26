@@ -2,8 +2,7 @@
 #include <string>
 using namespace std;
 
-int settings(){
-    int state = 0;
+int settings(int current_state){
     while(!WindowShouldClose()){
 
         if (IsKeyPressed(KEY_UP)){
@@ -44,6 +43,7 @@ int settings(){
 int main() {
     InitWindow(800, 600, "Pong");
     SetTargetFPS(120);
+    int state = 0;
     int p1_score = 0;
     int p2_score = 0;
     int paddle1_y = 275;
@@ -106,7 +106,7 @@ int main() {
         }
 
         if (IsKeyPressed(KEY_M)){
-            int state = settings();
+            int state = settings(state);
             if (state == 0){
                 ball_x_speed = 2;
                 ball_y_speed = 1;
