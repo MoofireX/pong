@@ -88,19 +88,31 @@ int main() {
         if (IsKeyDown(KEY_S) && paddle1_y <=500){
             paddle1_y+=5;
         }
-
-        int paddle2_y_pos = slope*770 + b;
-        int movement = paddle2_y_pos - paddle2_y;
-        float step = movement / 5.0f;
         
-        paddle2_y += step;
-        if (paddle2_y < 0){
-            paddle2_y = 0;
+        if (ball_x >= 400){
+            int paddle2_y_pos = slope*770 + b;
+            int movement = paddle2_y_pos - paddle2_y;
+            float step = movement / 5.0f;
+            if (ball_x_speed == 3){
+                if (step > 3){step = 3;}
+                else if (step < -2){step = -2;}
+            }
+            else if (ball_x_speed == 5){
+                if (step > 5){step = 5;}
+                else if (step < -5){step = -5;}
+            }
+            else if (ball_x_speed == 7){
+                if (step > 7){step = 7;}
+                else if (step < -8){step = -8;}
+            }
+            if (ball_x > 400){paddle2_y += step;}
+            if (paddle2_y < 0){
+                paddle2_y = 0;
+            }
+            if (paddle2_y > 500){
+                paddle2_y = 500;
+            }
         }
-        if (paddle2_y > 500){
-            paddle2_y = 500;
-        }
-
         if (IsKeyPressed(KEY_M)){
             state = settings(state);
             ball_x_speed = state * 2 + 3;
